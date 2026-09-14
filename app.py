@@ -2,13 +2,14 @@ import streamlit as st
 
 st.set_page_config(page_title="Engineering Dashboard", layout="wide")
 st.title("🛠️ Engineering Monitoring Dashboard")
+st.write("ยินดีต้อนรับสู่ระบบจำลองการติดตามสถานะทางวิศวกรรม")
+st.info("กรุณาเลือกโมดูลที่ต้องการตรวจสอบจากเมนูด้านซ้าย")
 
-temp = st.slider("อุณหภูมิ (°C)", -20.0, 80.0, 28.0, 0.5)
-st.metric("Temperature", f"{temp:.1f} °C")
-
-if temp <= 30:
-    st.success("สถานะ: ปกติ")
-elif temp <= 35:
-    st.warning("สถานะ: เฝ้าระวัง")
-else:
-    st.error("สถานะ: วิกฤต")
+st.subheader("รายชื่อสมาชิกในกลุ่ม")
+st.markdown("""
+1. คนที่ 1: (F) - Temperature Monitoring
+2. คนที่ 2: (A) - Humidity Monitoring
+3. คนที่ 3: (s) - Power Monitoring
+4. คนที่ 4: (e) - Safety Alarm
+5. คนที่ 5: (r) - System Summary + QA + README
+""")
