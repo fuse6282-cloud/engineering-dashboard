@@ -21,3 +21,4 @@ def test_critical():
 def test_invalid():
     with pytest.raises(ValueError):
         classify_temperature(100)
+        
