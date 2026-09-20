@@ -1,44 +1,33 @@
-# services/alarm.py
+import streamlit as st
+from services.alarm import generate_alarms
 
-VALID_STATUSES = {"NORMAL", "WARNING", "CRITICAL"}
+st.set_page_config(page_title="Safety Alarm System", page_icon="🚨", layout="wide")
 
-ALARM_MESSAGES = {
-    "temperature": {
-        "WARNING":  "WARNING: Temperature requires attention",
-        "CRITICAL": "CRITICAL: Temperature is unsafe",
-    },
-    "humidity": {
-        "WARNING":  "WARNING: Humidity requires attention",
-        "CRITICAL": "CRITICAL: Humidity is unsafe",
-    },
-    "power": {
-        "WARNING":  "WARNING: Power consumption is high",
-        "CRITICAL": "CRITICAL: Power consumption is unsafe",
-    },
-}
+st.title("🚨 Safety Alarm Monitoring System")
+st.write("ระบบตรวจสอบและรวบรวมการแจ้งเตือนความปลอดภัยจากทุกโมดูล")
 
-def generate_alarms(
-    temp_status: str,
-    humid_status: str,
-    power_status: str,
-) -> list[str]:
-    """คืน list ข้อความเตือน; ถ้าปกติทั้งหมดคืน []"""
+st.subheader("⚙️ จำลองสถานะของแต่ละเซนเซอร์")
+col1, col2, col3 = st.columns(3)
 
-    # ตรวจ Input ทุกตัว
-    for status in (temp_status, humid_status, power_status):
-        if status not in VALID_STATUSES:
-            raise ValueError(f"สถานะไม่ถูกต้อง: '{status}'")
+with col1:
+    temp_status = st.selectbox("สถานะ Temperature:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
 
-    alarms = []
+with col2:
+    humid_status = st.selectbox("สถานะ Humidity:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
 
-    # ตรวจตามลำดับคงที่: Temperature → Humidity → Power
-    if temp_status != "NORMAL":
-        alarms.append(ALARM_MESSAGES["temperature"][temp_status])
+with col3:
+    power_status = st.selectbox("สถานะ Power:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
 
-    if humid_status != "NORMAL":
-        alarms.append(ALARM_MESSAGES["humidity"][humid_status])
+alarms = generate_alarms(temp_status, humid_status, power_status)
 
-    if power_status != "NORMAL":
-        alarms.append(ALARM_MESSAGES["power"][power_status])
+st.divider()
+st.subheader("📋 ผลการตรวจจับสัญญาณเตือนภัย (Alarm Log)")
 
-    return alarms
+if alarms:
+    for alarm in alarms:
+        if "CRITICAL" in alarm:
+            st.error(f"🚨 {alarm}")
+        else:
+            st.warning(f"⚠️ {alarm}")
+else:
+    st.success("✅ ระบบทั้งหมดทำงานอยู่ในเกณฑ์ปกติ (NORMAL) — ไม่พบสัญญาณเตือนภัย")
