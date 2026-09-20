@@ -28,9 +28,14 @@ st.markdown("""
 
 st.subheader("👥 สมาชิกในกลุ่มและบทบาทหน้าที่")
 st.markdown("""
-- **คนที่ 1 (Temperature Monitoring):** รับผิดชอบ `services/temperature.py`, `pages/1_Temperature.py`, `tests/test_temperature.py`
-- **คนที่ 2 (Humidity Monitoring):** รับผิดชอบ `services/humidity.py`, `pages/2_Humidity.py`, `tests/test_humidity.py`
-- **คนที่ 3 (Power Monitoring):** รับผิดชอบ `services/power.py`, `pages/3_Power.py`, `tests/test_power.py`
-- **คนที่ 4 (Safety Alarm):** รับผิดชอบ `services/alarm.py`, `pages/4_Safety_Alarm.py`, `tests/test_alarm.py`
-- **คนที่ 5 (System Summary & QA):** รับผิดชอบ `app.py`, `pages/5_System_Summary.py`, `README.md` และการตรวจ Code Review
+- **คนที่ 1 (Temperature Monitoring):** 
+นาย นพรัตน์ ท้วมแก้ว รับผิดชอบ `services/temperature.py`, `pages/1_Temperature.py`, `tests/test_temperature.py`
+- **คนที่ 2 (Humidity Monitoring):** 
+นาย อโนทัย คำใส รับผิดชอบ `services/humidity.py`, `pages/2_Humidity.py`, `tests/test_humidity.py`
+- **คนที่ 3 (Power Monitoring):** 
+นาย อชิตะ หนองเทา รับผิดชอบ `services/power.py`, `pages/3_Power.py`, `tests/test_power.py`
+- **คนที่ 4 (Safety Alarm):** 
+นาย ภูบดินทร์ แก้วยองผาง รับผิดชอบ `services/alarm.py`, `pages/4_Safety_Alarm.py`, `tests/test_alarm.py`
+- **คนที่ 5 (System Summary & QA):** 
+นาย อณาจักร หลวงสว่าง รับผิดชอบ `app.py`, `pages/5_System_Summary.py`, `README.md` และการตรวจ Code Review
 """)
