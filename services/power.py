@@ -1,5 +1,5 @@
 def calculate_power(voltage: float, current: float) -> float:
-    """คำนวณกำลังไฟฟ้า P = V x I"""
+    """คำนวณกำลังไฟฟ้า P = V × I"""
 
     if voltage <= 0:
         raise ValueError("Voltage ต้องมากกว่า 0")
@@ -11,7 +11,7 @@ def calculate_power(voltage: float, current: float) -> float:
 
 
 def classify_power(power_watt: float) -> str:
-    """<500 NORMAL, 500..1000 WARNING, >1000 CRITICAL"""
+    """แบ่งสถานะตามกำลังไฟฟ้า"""
 
     if power_watt < 500:
         return "NORMAL"
