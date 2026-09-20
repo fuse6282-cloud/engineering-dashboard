@@ -1,0 +1,33 @@
+import streamlit as st
+from services.alarm import generate_alarms
+
+st.set_page_config(page_title="Safety Alarm System", page_icon="🚨", layout="wide")
+
+st.title("🚨 Safety Alarm Monitoring System")
+st.write("ระบบตรวจสอบและรวบรวมการแจ้งเตือนความปลอดภัยจากทุกโมดูล")
+
+st.subheader("⚙️ จำลองสถานะของแต่ละเซนเซอร์")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    temp_status = st.selectbox("สถานะ Temperature:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
+
+with col2:
+    humid_status = st.selectbox("สถานะ Humidity:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
+
+with col3:
+    power_status = st.selectbox("สถานะ Power:", ["NORMAL", "WARNING", "CRITICAL"], index=0)
+
+alarms = generate_alarms(temp_status, humid_status, power_status)
+
+st.divider()
+st.subheader("📋 ผลการตรวจจับสัญญาณเตือนภัย (Alarm Log)")
+
+if alarms:
+    for alarm in alarms:
+        if "CRITICAL" in alarm:
+            st.error(f"🚨 {alarm}")
+        else:
+            st.warning(f"⚠️ {alarm}")
+else:
+    st.success("✅ ระบบทั้งหมดทำงานอยู่ในเกณฑ์ปกติ (NORMAL) — ไม่พบสัญญาณเตือนภัย")
